@@ -4,12 +4,17 @@ const createButton = document.getElementById('create');
 createButton.onclick = () => {
     const columns = parseInt(prompt(`Please enter a number n in the range of 0 ~ 100 to create
         a n by n grid`));
-    if (columns > 100 || typeof columns != 'number') {
+    console.log(columns);
+    if (columns > 100 || isNaN(columns)) {
         alert('Please enter a number within 0 to 100');
-        return;
+
+    } else {
+        container.innerHTML = '';
+        createGrid(columns);
+
     }
-    container.innerHTML = '';
-    createGrid(columns);
+
+
 };
 
 function changeColor() {
@@ -18,11 +23,12 @@ function changeColor() {
 }
 
 function createGrid(n) {
+    const height = 868 / n;
     container.style['grid-template-columns'] = `repeat(${n}, auto`;
     for (let i = 0; i < n * n; i++) {
         const squareDiv = document.createElement('div');
         squareDiv.style.cssText += `border: 1px solid white; background-color: black;
-            padding: 32px 0;`;
+            height: ${height}px;`;
         squareDiv.addEventListener('mouseenter', changeColor);
         container.appendChild(squareDiv);
     }
