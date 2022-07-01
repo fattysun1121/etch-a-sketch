@@ -13,15 +13,16 @@ createButton.onclick = () => {
 };
 
 function changeColor() {
-    this.style.backgroundColor = "green";
+    let color = Math.floor(Math.random()*16777215).toString(16);
+    this.style.backgroundColor = `#${color}`;
 }
 
 function createGrid(n) {
     container.style['grid-template-columns'] = `repeat(${n}, auto`;
     for (let i = 0; i < n * n; i++) {
         const squareDiv = document.createElement('div');
-        squareDiv.style.cssText += `border: 1px solid black; back-ground-color: white;
-            padding: 18px 0;`;
+        squareDiv.style.cssText += `border: 1px solid white; background-color: black;
+            padding: 32px 0;`;
         squareDiv.addEventListener('mouseenter', changeColor);
         container.appendChild(squareDiv);
     }
